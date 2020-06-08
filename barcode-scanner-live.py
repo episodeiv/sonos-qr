@@ -12,7 +12,8 @@ time.sleep(2.0)
 while True:
     frame = vs.read()
     # scale down image
-    frame = imutils.resize(frame, width=400)
+#    frame = imutils.resize(frame, width=400)
+    frame = imutils.resize(frame, width=500, inter=cv2.INTER_NEAREST)
 
     barcodes = pyzbar.decode(frame)
 
