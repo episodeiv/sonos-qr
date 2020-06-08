@@ -8,9 +8,8 @@ class TestValidation(unittest.TestCase):
 		Test some valid qr codes
 		"""
 		codes = [
-			"sonos-qr:abcdef",
-			"sonos-qr:123456",
-			"sonos-qr:a-s-d"
+			"sonos-qr:abcdef&token",
+			"sonos-qr:1_2_3&t_o_k_e_n",
 		]
 
 		for code in codes:
@@ -24,6 +23,7 @@ class TestValidation(unittest.TestCase):
 		codes = [
 			"",
 			None,
+			"sonos-qr:abcdef",
 			"some-prefix:abcdef"
 		]
 

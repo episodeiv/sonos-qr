@@ -1,7 +1,7 @@
 import re
 import time
 
-valid_code = re.compile('^sonos-qr:')
+valid_code = re.compile('^sonos-qr:([a-z0-9_]+)&([a-z0-9_]+)', re.IGNORECASE)
 same_code_timoeut = 1.0
 previous_code = None
 
@@ -21,7 +21,9 @@ def is_valid(content):
 	if content is None:
 		return False
 
-	if valid_code.match(content):
+	match = re.search(valid_code, content)
+
+	if match:
 		return True
 	else:
 		return False
