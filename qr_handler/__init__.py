@@ -8,10 +8,12 @@ previous_code = None
 
 
 def handle_code(content):
+	global previous_code
 	if not is_valid(content):
 		return False
 
-	if(content == previous_code):
+	if previous_code is not None and content == previous_code:
+		print("Seen that before")
 		time.sleep(same_code_timeout)
 		return False
 
@@ -21,6 +23,8 @@ def handle_code(content):
 	token = match.group(2)
 
 	result = make_request(action, token)
+
+	previous_code = content
 
 	return result
 
