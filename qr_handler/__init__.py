@@ -1,5 +1,4 @@
 import re
-import requests
 import time
 
 valid_code = re.compile('^sonos-qr:([a-z0-9_]+)&([a-z0-9_]+)', re.IGNORECASE)
@@ -20,26 +19,12 @@ def handle_code(content):
 
 	match = re.search(valid_code, content)
 
-	action = match.group(1)
+	favorite = match.group(1)
 	token = match.group(2)
-
-	result = make_request(action, token)
 
 	previous_code = content
 
-	return result
-
-
-
-def make_request(action, token):
-	print("Making request")
-	r = requests.get("https://maker.ifttt.com/trigger/" + action + "/with/key/" + token)
-
-	if r.status_code == 200:
-		return True
-	else:
-		return False
-
+	return favorite
 
 
 def is_valid(content):
