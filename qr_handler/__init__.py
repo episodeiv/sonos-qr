@@ -3,13 +3,14 @@ import requests
 import time
 
 valid_code = re.compile('^sonos-qr:([a-z0-9_]+)&([a-z0-9_]+)', re.IGNORECASE)
-same_code_timeout = 1.0
+same_code_timeout = 10.0
 previous_code = None
 
 
 def handle_code(content):
 	global previous_code
 	if not is_valid(content):
+		print("Read invalid code")
 		return False
 
 	if previous_code is not None and content == previous_code:
@@ -31,6 +32,7 @@ def handle_code(content):
 
 
 def make_request(action, token):
+	print("Making request")
 	r = requests.get("https://maker.ifttt.com/trigger/" + action + "/with/key/" + token)
 
 	if r.status_code == 200:
