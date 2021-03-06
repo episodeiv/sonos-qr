@@ -1,7 +1,7 @@
 import re
 import time
 
-valid_code = re.compile('^sonos-qr:([a-z0-9_]+)&([a-z0-9_]+)', re.IGNORECASE)
+valid_code = re.compile('^sonos-qr:([a-z0-9_ ]+)', re.IGNORECASE)
 same_code_timeout = 10.0
 previous_code = None
 
@@ -19,12 +19,11 @@ def handle_code(content):
 
 	match = re.search(valid_code, content)
 
-	favorite = match.group(1)
-	token = match.group(2)
+	album = match.group(1)
 
 	previous_code = content
 
-	return favorite
+	return album
 
 
 def is_valid(content):
