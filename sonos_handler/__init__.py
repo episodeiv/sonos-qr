@@ -22,6 +22,6 @@ def play_album(device, album):
 		print(f"Found {items[0]}")
 
 		print("Clearing the queue")
-		#device.clear_queue()
+		device.clear_queue()
 
-		#print(device.add_to_queue(items[0], position=1))
+		print(device.add_to_queue(items[0], position=1))

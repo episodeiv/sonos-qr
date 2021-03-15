@@ -39,5 +39,6 @@ while True:
 	for barcode in barcodes:
 		data = barcode.data.decode("utf-8")
 		album = handle_code(data)
-		sonos_handler.play_album(device, album)
+		if album:
+			sonos_handler.play_album(device, album)
 	time.sleep(1)
